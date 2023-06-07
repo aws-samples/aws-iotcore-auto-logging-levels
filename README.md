@@ -1,12 +1,14 @@
-## My Project
+# Using automation to control AWS IoT Core v2 logging levels
 
-TODO: Fill this README out!
+## Introduction
 
-Be sure to:
+## Walkthrough
 
-* Change the title in this README
-* Edit your repository description on GitHub
+<img src="./assets/Solution%20Overview.png" />
 
+### Prerequisites
+
+## Cleaning up
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
