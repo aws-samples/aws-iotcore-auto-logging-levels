@@ -1,31 +1,30 @@
 # Using automation to control AWS IoT Core v2 logging levels
 
 ## Introduction
-This describes one method to adjust the level of IoT logging for a 
-predetermined length of time and on a schedule you set. Example use-case 
-for this would be to log full INFO level of logging for only 5 minutes during 
-peak usage hours then change back to ERROR level of logging for the rest of 
-the day. While not covered in this article you could use the same AWS Step 
-Function to turn on INFO or DEBUG level if a certain event happens and use 
-IoT Rule Actions to start the AWS Step Function.
+In this repository, we'll describe and demonstration a solution for automating the adjustment of the level of logging in AWS IoT Core. The example use-case for this solution is we need to configure out AWS IoT Core logging to a log level of INFO for only 5 minutes, during peak usage hours, and then change that log level back to ERROR of logging for the rest of the day. This automation provides a signifcant cost-savings and allows you to record the level of logs you need at the time you need them.
 
 ## Walkthrough
-The Step Function we will be building performs the
-following tasks – Change IoTv2loggingOptions setting to
-INFO, send a notification via SNS to topic, wait 5
-minutes, change IoTv2LoggingOptions to ERROR, and
-send a notification to the same topic informing the
-subscribers the logging has changed to ERROR.
+For the demonstration in this repository, we'll use AWS Step Functions to orchestrate the following tasks:
+1. Configure the logging level of AWS IoT Core to <b>INFO</b>
+2. Send a notification using Amazon SNS to let subscribers know this automation has started 
+3. Delay the Step Function by 5 minutes
+4. Configure the logging level of AWS IoT Core to <b>Error</b>
+5. Send a notification using Amazon SNS to let subscribers know this automation has ended 
 
-We will assume you already have a SNS topic already configured. If not 
-please follow these instructions here. 
-https://docs.aws.amazon.com/sns/latest/dg/sns-getting-started.html
+The illustration below details what this solution will look like once fully implemented.
 
 <img src="./assets/Solution%20Overview.png" />
 
+<br /> 
+
 ### Prerequisites
+To follow through this repository, you will need an <a href="https://console.aws.amazon.com/" >AWS account</a>, an <a href="https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/" >AWS IoT Core supported region</a>, permissions to <a href="https://docs.aws.amazon.com/iot/latest/developerguide/configure-logging.html" >configure AWS IoT logging </a>, create <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html" > AWS Identity and Access Management (IAM) roles and policies</a>, create <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html"> AWS Step Functions</a>, and access to the <a href="https://aws.amazon.com/cli/">AWS CLI</a>. We also assume you have familiar with the basics of Linux bash commands.
 
 ## Cleaning up
+Be sure to remove the resources created in this blog to avoid charges. Run the following commands to delete these resources:
+
+1. aws 
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
