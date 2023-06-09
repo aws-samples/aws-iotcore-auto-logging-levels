@@ -1,7 +1,7 @@
 # Using automation to control AWS IoT Core v2 logging levels
 
 ## Introduction
-In this repository, we'll describe and demonstration a solution for automating the adjustment of the level of logging in AWS IoT Core. The example use-case for this solution is we need to configure out AWS IoT Core logging to a log level of INFO for only 5 minutes, during peak usage hours, and then change that log level back to ERROR of logging for the rest of the day. This automation provides a signifcant cost-savings and allows you to record the level of logs you need at the time you need them.
+In this repository, we'll describe and demonstrate a solution for automating the adjustment of the level of logging in AWS IoT Core. The example use-case for this solution is we need to configure out AWS IoT Core logging to a log level of INFO for only 5 minutes, during peak usage hours, and then change that log level back to ERROR of logging for the rest of the day. This automation provides a signifcant cost-savings and allows you to record the level of logs you need at the time you need them.
 
 ## Walkthrough
 For the demonstration in this repository, we'll use AWS Step Functions to orchestrate the following tasks:
