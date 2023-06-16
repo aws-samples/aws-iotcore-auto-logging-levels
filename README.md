@@ -206,17 +206,17 @@ To follow through this repository, you will need an <a href="https://console.aws
 ## Cleaning up
 Be sure to remove the resources created in this blog to avoid charges. Run the following commands to delete these resources:
 
-1. aws sns delete-topic --topic-arn "Replace_Me_With_SNS_Topic_ARN"
-2. aws sns unsubscribe --subscription-arn "Replace_Me_With_SNS_Subscription_ARN"
-3. aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_role"  --policy-name "aws_stepfunction_iotcore_logging_demo_policy"
-4. rm iot_core_logging_policy.json
-5. aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_role"
-6. aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"
-7. aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"  --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy"
-8. rm iot_core_logging_eventbridge_policy.json
-9. aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"
-10. aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"
-11. aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule" 
+1. ```aws sns delete-topic --topic-arn "Replace_Me_With_SNS_Topic_ARN"```
+2. ```aws sns unsubscribe --subscription-arn "Replace_Me_With_SNS_Subscription_ARN"```
+3. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_role" --policy-name "aws_stepfunction_iotcore_logging_demo_policy"```
+4. ```rm iot_core_logging_policy.json```
+5. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_role"```
+6. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
+7. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role" --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy"```
+8. ```rm iot_core_logging_eventbridge_policy.json```
+9. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"```
+10. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
+11. ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
 
 ## Security
 
