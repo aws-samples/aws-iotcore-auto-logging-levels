@@ -212,7 +212,6 @@ Be sure to remove the resources created in this blog to avoid charges. Run the f
 9.  ```aws events remove-targets --rule "aws_iot_core_logging_levels_demo_event_rule" --ids "aws_iot_core_logging_levels_demo_event_rule_target_id"``` 
 10. ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
 11. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
-12. 
 
 ## Security
 
