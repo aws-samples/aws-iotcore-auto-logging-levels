@@ -26,13 +26,6 @@ To follow through this repository, you will need an <a href="https://console.aws
     ```   
     aws sns create-topic --name "aws_iot_core_logging_levels_demo_topic"
     ```
-
-    The output from the command should look similar to the following:
-    ```
-    {
-        "TopicArn": "arn:aws:sns:AWSREGION:AWSACCOUNTID:aws_iot_core_logging_levels_demo_topic"
-    }
-    ```
 2. Create your Amazon SNS subscription by issuing the <b>subscribe</b> command
     ```   
     aws sns subscribe --topic-arn "Replace_Me_With_SNS_Topic_ARN" --protocol email --notification-endpoint "Replace_Me_With_Email_Address"
