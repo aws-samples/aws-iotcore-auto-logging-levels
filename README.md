@@ -1,7 +1,7 @@
 # Using automation to control AWS IoT Core v2 logging levels
 
 ## Introduction
-In this repository, we'll describe and demonstrate a solution for automating the adjustment of the level of logging in AWS IoT Core. The example use-case for this solution is we need to configure our AWS IoT Core logging level to INFO for only 5 minutes, during peak usage hours, and then change that log level back to ERROR of logging for the rest of the day. This automation provides a signifcant cost-savings and allows you to record the level of logs you need at the time you need them.
+In this repository, we'll describe and demonstrate a solution for automating the adjustment of the level of logging in AWS IoT Core. The example use-case for this solution is we need to configure our AWS IoT Core logging level to INFO for only 5 minutes, during peak usage hours, and then change that log level back to ERROR for the rest of the day. This automation provides a signifcant cost-savings and allows you to record the level of logs you need at the time you need them.
 
 ## Walkthrough
 For the demonstration in this repository, Amazon EventBridge will start the AWS Step Function at a scheduled time of the day. This AWS Step Function will then orchestrate the following tasks:
@@ -206,12 +206,13 @@ Be sure to remove the resources created in this blog to avoid charges. Run the f
 3. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_role" --policy-name "aws_stepfunction_iotcore_logging_demo_policy"```
 4. ```rm iot_core_logging_policy.json```
 5. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_role"```
-6. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
-7. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role" --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy"```
-9. ```rm step_function_execution_policy.json```
-9. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"```
-10. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
-11. ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
+6. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role" --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy"```
+7. ```rm step_function_execution_policy.json```
+8. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"```
+9.  ```aws events remove-targets --rule "aws_iot_core_logging_levels_demo_event_rule" --ids "aws_iot_core_logging_levels_demo_event_rule_target_id"``` 
+10. ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
+11. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
+12. 
 
 ## Security
 
