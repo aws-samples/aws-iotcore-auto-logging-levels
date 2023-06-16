@@ -47,7 +47,7 @@ To follow through this repository, you will need an <a href="https://console.aws
             {
                 "Effect": "Allow",
                 "Principal": {
-                    "Service": "lambda.amazonaws.com"
+                    "Service": "states.amazonaws.com"
                 },
                 "Action": "sts:AssumeRole"
             }
@@ -94,7 +94,7 @@ To follow through this repository, you will need an <a href="https://console.aws
         "Type": "Task",
         "Parameters": {
             "DefaultLogLevel": "INFO",
-            "RoleArn": "arn:aws:iam:::role/service-role/IoT_Role_For_Logs"
+            "RoleArn": "Replace_Me_With_Role_ARN_From_Step1"
         },
         "Resource": "arn:aws:states:::aws-sdk:iot:setV2LoggingOptions",
         "Next": "SNS Publish"
@@ -120,7 +120,7 @@ To follow through this repository, you will need an <a href="https://console.aws
         "Parameters": {
             "DefaultLogLevel": "ERROR",
             "DisableAllLogs": false,
-            "RoleArn": "arn:aws:iam:::role/service-role/IoT_Role_For_Logs"
+            "RoleArn": "Replace_Me_With_Role_ARN_From_Step1"
         },
         "Resource": "arn:aws:states:::aws-sdk:iot:setV2LoggingOptions",
         "Next": "SNS Publish (1)"
@@ -153,51 +153,22 @@ To follow through this repository, you will need an <a href="https://console.aws
             {
                 "Effect": "Allow",
                 "Principal": {
-                    "Service": "lambda.amazonaws.com"
+                    "Service": "events.amazonaws.com"
                 },
                 "Action": "sts:AssumeRole"
             }
         ]
     }'
     ```
-2. Use the below command to create the policy document for the role’s permissions
-   ```
-   echo '{                         
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "sns:*",
-                "iot:GetV2LoggingOptions",
-                "iot:SetV2LoggingOptions",
-                "iam:PassRole",
-                "iot:SetV2LoggingLevel",
-                "iot:ListV2LoggingLevels",
-                "iot:DeleteV2LoggingLevel"
-            ],
-            "Resource": "*"
-        }
-    ]}' >  iot_core_logging_eventbridge_policy.json
-   ```
-    <b>NOTE)</b> This IAM policy is to be use for development purposes only. We recommend following the best practice of least privilege with your IAM policy. You should consider scoping this down if deploying into a production account. 
 
-3. Attach the IAM policy to the IAM role by issuing the <b>put-role-policy</b> command
+2. Create your Amazon EventBridge rule by issuing the <b>put-rule</b> command
     ```
-    aws iam put-role-policy \
-    --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role" \
-    --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy" \
-    --policy-document file://iot_core_logging_eventbridge_policy.json
+    aws events put-rule --name "aws_iot_core_logging_levels_demo_event_rule" --schedule-expression "rate(30 minutes)" --role-arn "Replace_Me_With_Role_ARN_From_Step1"
     ```
-4. Create your Amazon EventBridge rule by issuing the <b>put-rule</b> command
-    ```
-    aws events put-rule --name "aws_iot_core_logging_levels_demo_event_rule" --schedule-expression "cron(5,35 14 * * ? *)" --role-arn "Replace_Me_With_Role_ARN_From_Step3"
-    ```
-    * This example creates a rule that runs every day, at 2:05pm and 2:35pm UTC+0.
+    * This example creates a rule that runs every 30 minutes.
   
     </br>
-5. Add your AWS Step Function as a target to your Amazon EventBridge rule by issuing the <b>put-targets</b> command
+3. Add your AWS Step Function as a target to your Amazon EventBridge rule by issuing the <b>put-targets</b> command
 
     ```
     aws events put-targets --rule "Replace_Me_With_Rule_ARN_From_Step1" --targets "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"
@@ -212,11 +183,9 @@ Be sure to remove the resources created in this blog to avoid charges. Run the f
 4. ```rm iot_core_logging_policy.json```
 5. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_role"```
 6. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
-7. ```aws iam delete-role-policy --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role" --policy-name "aws_stepfunction_iotcore_logging_demo_eventbridge_policy"```
-8. ```rm iot_core_logging_eventbridge_policy.json```
-9. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"```
-10. ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
-11. ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
+7. ```aws iam delete-role --role-name "aws_stepfunction_iotcore_logging_demo_eventbridge_role"```
+8.  ```aws stepfunctions delete-state-machine --state-machine-arn "Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine"```
+9.  ```aws events delete-rule --name "aws_iot_core_logging_levels_demo_event_rule"``` 
 
 ## Security
 
