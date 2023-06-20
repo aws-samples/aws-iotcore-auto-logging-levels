@@ -140,7 +140,7 @@ To follow through this repository, you will need an <a href="https://console.aws
     },
     "Comment": "Turn Logging Level to Info for set period of time then change it back to Error",
     "TimeoutSeconds": 1200
-    }' --role-arn "Replace_Me_With_Role_ARN_From_Step1"
+    }' --role-arn "Replace_Me_With_Role_ARN_From_Step2.1"
     ```
 ### Step 3: Create the Amazon EventBridge rule (AWS CLI)
 1. Create the IAM execution role for the EventBridge rule by issuing the <b>create-role</b> command
