@@ -195,7 +195,7 @@ To follow through this repository, you will need an <a href="https://console.aws
 5. Add your AWS Step Function as a target to your Amazon EventBridge rule by issuing the <b>put-targets</b> command
 
     ```
-    aws events put-targets --rule "aws_iot_core_logging_levels_demo_event_rule" --targets "Id"="aws_iot_core_logging_levels_demo_event_rule_target_id","Arn"="Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine","RoleArn"="Replace_Me_With_Role_ARN_From_Step1"
+    aws events put-targets --rule "aws_iot_core_logging_levels_demo_event_rule" --targets "Id"="aws_iot_core_logging_levels_demo_event_rule_target_id","Arn"="Replace_Me_With_ARN_Of_AWS_Step_Function_State_Machine","RoleArn"="Replace_Me_With_Role_ARN_From_Step3.1"
     ```
 
 ## Cleaning up
